@@ -13,7 +13,10 @@
   "dependencies": {
     "express": "^4.19.2"
   },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
   "eslintConfig": {
-    "extends": "./expressJsBasics/node_modules/standard/eslintrc.json"
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
