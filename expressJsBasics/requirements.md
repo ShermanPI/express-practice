@@ -52,18 +52,20 @@ so if the request resolved so the client encounter an <h1>404</h1> response
     in express we have in the request handler function a third parameter named next() to every time a middleware have made the logic for us express continue to resolve the next endpoints resolvers, and normally the .use() methos is use to make a middleware globally reachable
 
 
-# note: remember to use the next() when making a middleware (req, res, next)=>{fn}
+# note: remember to use the next() when making a middleware in the request handler function (req, res, next)=>{fn}
 
-- make a middleware to before handling all request print 'the method used in the request and the url too'
-- make a middleware to before handling all GET requests print 'This is the all GET requests middleware'
-- make a middleware to before handling all POST requests print 'This is the all POST requests middleware'
-- make a middleware to print 'pokemon 👻' only in the endpoints that has '/pokemon/*', 
+✅ - make a global middleware to before handling all request print '[request method] - url'
+✅ - make a middleware to before handling all GET requests print 'This is the all GET requests middleware'
+✅ - make a middleware to before handling all POST requests print 'This is the all POST requests middleware'
+✅ - make a middleware to print 'pokemon 👻' only in the endpoints that has '/pokemon/*', 
 
 # note: in most of the cases to make a middleware the mehtos .use() is more often used
 
-- make a middleware to every time you receive a body in a POST request the body is parsed, after modify req.body = parsedData
+✅ - make a middleware to every time you receive a body in a POST and the request the body need to be parsed
+✅ - modify req.body = parsedData to be able to access in another route handlers.
 
 # note: the object 'req' and 'res' is the same that will be used in the next request handlers
 
-- after the middleware that parse the body use the body in another POST endpoint
-- use the express middleware express.json() (do the same that the request of before was doing)
+✅ - After the middleware that parse the body use the body in another POST endpoint (used in /pokemon/save)
+
+✅ - Use the express middleware express.json() (do the same that the request of before was doing)
