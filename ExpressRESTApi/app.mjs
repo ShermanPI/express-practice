@@ -16,7 +16,7 @@ app.get('/movies', (req, res) => {
 })
 
 app.get('/movies/:id', (req, res) => {
-    const { id } = req.query
+    const { id } = req.params
     const movie = moviesData.find(movie => movie.id === id)
     if (movie) return res.json(movie)
         
