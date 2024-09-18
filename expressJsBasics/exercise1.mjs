@@ -24,7 +24,6 @@ const PORT = process.env.PORT || 1234
 //     const parsedBody = Buffer.concat(body).toString()
 //     console.log(parsedBody)
 
-//     res.type('application/json')
 //     req.body = parsedBody
 
 //     next()
@@ -67,7 +66,7 @@ app.get('/some/json', (req, res) => {
 })
 
 app.post('/pokemon/save', (req, res) => {
-  res.send(req.body)
+  res.json(req.body)
 })
 
 app.get('/pokemon/read/pikachu', (req, res) => {
