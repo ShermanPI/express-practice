@@ -1,7 +1,7 @@
 // get all the movies ✅
 GET http://localhost:1234/movies
 
-// get a movie by ID
+// get a movie by ID ✅
 GET http://localhost:1234/movies/1
 
 // get all movies by a genre (its a filter so im using query params)
