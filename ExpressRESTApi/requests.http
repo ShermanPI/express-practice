@@ -4,11 +4,11 @@ GET http://localhost:1234/movies
 // get a movie by ID ✅
 GET http://localhost:1234/movies/1
 
-// get all movies by a genre (its a filter so im using query params)
+// get all movies by a genre (its a filter so im using query params) ✅
 GET http://localhost:1234/movies?genre=Action
 
 // create a movie
-POST http://localhost:1234/movies
+POST http://localhost:1234/movies ✅
 Content-Type: application/json
 
 {

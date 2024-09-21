@@ -1,10 +1,10 @@
 ✅ - disable header x-powered-by in the expressjs app
 
-- make possible the requests that you can find in the request.http file
+✅ - make possible the requests that you can find in the request.http file
 
-- make a path to regex in expressjs
+✅ - make a path to regex in expressjs (made it to respond to all request finishing on .img)
 
-- use node:crypto to create a new id when creating a new movie
+✅ - use node:crypto to create a new id when creating a new movie
 
 - install zod schema for validations in the post requests
  - when creating a movie:
@@ -16,7 +16,7 @@
   - poster: string and url
   - genre: enum with an array of all categories
 
-- if it is an error in the post request from zod schema return the error 400 to the client, and the message, otherwise just resturn the data
+- if it is an error in the post request from zod schema return the error 400 to the client, and the message, otherwise just return the data
 
 # note: is a good practice that you can pass to the APIs everything and dont explode, just process the things that needed. It is an error. like if you pass an element that is not in the schema in a request the API should not cry 🐇
 
