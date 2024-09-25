@@ -2,6 +2,8 @@ import fs from 'node:fs/promises'
 import crypto from 'node:crypto'
 import express from 'express'
 import moviesData from './moviesMock.json' assert {type: 'json'}
+import movieSchema from './schemas/movies.mjs'
+import { error } from 'node:console'
 
 const app = express()
 const PORT = 1234
@@ -35,8 +37,14 @@ app.post('/movies', (req, res)=>{
   // replace this saving it in a database
   const newMovie = {...req.body, id: crypto.randomUUID()}
 
-  moviesData.push(newMovie)
-  res.json(newMovie)
+  const parsedMovie = movieSchema.safeParse(newMovie)
+  
+  if (parsedMovie.success) {
+    moviesData.push(newMovie)
+    return res.json(newMovie)
+  }
+
+  return res.status(400).json({ error: parsedMovie.error.issues })
 })
 
 app.get(/^.*\.img$/, async (req, res)=>{
