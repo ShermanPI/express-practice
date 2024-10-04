@@ -1,13 +1,13 @@
-// get all the movies ✅
+### get all the movies ✅
 GET http://localhost:1234/movies
 
-// get a movie by ID ✅
+### get a movie by ID ✅
 GET http://localhost:1234/movies/1
 
-// get all movies by a genre (its a filter so im using query params) ✅
+### get all movies by a genre (its a filter so im using query params) ✅
 GET http://localhost:1234/movies?genre=Action
 
-// create a movie
+### create a movie
 POST http://localhost:1234/movies ✅
 Content-Type: application/json
 
@@ -22,6 +22,10 @@ Content-Type: application/json
   "rate": 9.3
 }
 
-// update a movie
+### update an specific movie
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
 
-PATCH http://localhost:1234/movies
+{
+  year: 1993
+}

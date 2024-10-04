@@ -19,5 +19,31 @@
 
 ✅ - if it is an error in the post request from zod schema return the error 400 to the client, and the message, otherwise just return the data
 
-# note: is a good practice that you can pass to the APIs everything you want and dont explode just because you pass an extra parameter for example, just process the things that needed. If it's an error, like if you pass an element that is not in the schema in a request the API should not cry 🐇🐕
+# note: is a good practice that you can pass to the APIs everything you want and dont explode just because you pass an extra parameter for example, just process the things that needed. If it's an error for passing extra data, like if you pass an element that is not in the schema in a request, the API should not "cry" 🐇🐕
 
+- In the patch method if a movie of the id passed is not found return an 404 error to the client
+- make a function to validate the movies with the schema
+- make a function to validate the movies partially for the patch method
+- after validate the patch payload return 400 if a property is not valid, otherwise return the modified movie
+- try validating the id in the ID, if the schema does not have the id in the object, it cannot be modified because zod only will return the properties that are validating in the moment and that is what you want
+
+### CORS SOLVING
+
+- Create a web with index.html
+- Make a fetch to get all the movies in the web
+- resolve the CORS error in the browser fixing it in the API
+- make a list of accepted origins and only fix the cors error to those origins
+
+# NOTE: if the request comes from the same origin of the api, the request does not come with the 'origin' header, so try to validate the accepted origins without adding the same origin
+
+- make a DELETE method to delete a movie in the endpoints
+- make a delete button in the web page to delete an especific movie
+- resolve the CORS problem to the delete method
+
+# NOTE: For the methods DELETE / PATCH / PUT - the browser makes a PREFLIGHT request with the method OPTIONS an this method also needs the header 'Access-Control-Allow-Origin', so the others "complex methods" can be used, an remember that this mechanism also need the "Access-Control-Allow-Methods" with the methods allowed. EXAMPLE: 'GET, POST, DELETE' 
+
+# A preflight request is an HTTP request that is sent before the actual request to check if it is safe to send. It is a mechanism used by the Cross-Origin Resource Sharing (CORS) standard to request permission from a website before sending an HTTP request that could have side effects
+
+- use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). `
+- deploy the api in fl0
+- create a require and import the mock JSON

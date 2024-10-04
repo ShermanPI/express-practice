@@ -28,7 +28,7 @@ app.get('/movies', (req, res) => {
 app.get('/movies/:id', (req, res) => {
   const { id } = req.params
   const movie = moviesData.find(movie => movie.id === id)
-  if (movie) return res.json(movie)
+  if (movie) return res.json({movie, movies: moviesData})
 
   res.status(404).json({ message: 'Movie not found' })
 })
@@ -45,6 +45,29 @@ app.post('/movies', (req, res)=>{
   }
 
   return res.status(400).json({ error: parsedMovie.error.issues })
+})
+
+app.patch('/movies/:id', (req, res)=>{
+  const { id } = req.params
+  const result = movieSchema.safeParse(req.body)
+
+  const movieIndex = moviesData.findIndex(el => el.id === id)
+  const movie = moviesData[movieIndex]
+
+  
+  if(!movie){
+    return res.status(404).json({ message: 'Not found' })
+  }
+  
+  if(!result.success){
+    return res.status(400).json({errors: result.error.issues})
+  }
+
+  const updatedMovie = {...movie, ...result.data}
+
+  moviesData[movieIndex] = updatedMovie
+
+  res.json(result.data)
 })
 
 app.get(/^.*\.img$/, async (req, res)=>{

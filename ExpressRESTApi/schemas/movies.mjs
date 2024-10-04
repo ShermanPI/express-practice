@@ -1,8 +1,6 @@
 import { z } from 'zod'
 
 const movieSchema = z.object({
-  id: z.string({ message: 'ID only accepts strings' })
-    .uuid({ message: 'Only uuid  are accepted' }),
   title: z.string(),
   year: z.number().min(1900, { message: 'Year only accepts min year 1900' }),
   director: z.string(),
