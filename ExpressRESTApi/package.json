@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "type": "module",
   "devDependencies": {
     "standard": "^17.1.2"
   },

@@ -21,9 +21,9 @@
 
 # note: is a good practice that you can pass to the APIs everything you want and dont explode just because you pass an extra parameter for example, just process the things that needed. If it's an error for passing extra data, like if you pass an element that is not in the schema in a request, the API should not "cry" 🐇🐕
 
-- In the patch method if a movie of the id passed is not found return an 404 error to the client
-- make a function to validate the movies with the schema
-- make a function to validate the movies partially for the patch method
+✅ - In the patch method if a movie of the id passed is not found return an 404 error to the client
+✅ - make a function to validate the movies with the zod schema
+✅ - make a function to validate the movies partially for the patch method
 - after validate the patch payload return 400 if a property is not valid, otherwise return the modified movie
 - try validating the id in the ID, if the schema does not have the id in the object, it cannot be modified because zod only will return the properties that are validating in the moment and that is what you want
 

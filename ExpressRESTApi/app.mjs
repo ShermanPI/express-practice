@@ -2,8 +2,8 @@ import fs from 'node:fs/promises'
 import crypto from 'node:crypto'
 import express from 'express'
 import moviesData from './moviesMock.json' assert {type: 'json'}
-import movieSchema from './schemas/movies.mjs'
-import { error } from 'node:console'
+import validateMovie from './utils/validate-movie.mjs'
+import validateMoviePartially from './utils/validate-movie-partially.mjs'
 
 const app = express()
 const PORT = 1234
@@ -28,7 +28,7 @@ app.get('/movies', (req, res) => {
 app.get('/movies/:id', (req, res) => {
   const { id } = req.params
   const movie = moviesData.find(movie => movie.id === id)
-  if (movie) return res.json({movie, movies: moviesData})
+  if (movie) return res.json(movie)
 
   res.status(404).json({ message: 'Movie not found' })
 })
@@ -37,7 +37,7 @@ app.post('/movies', (req, res)=>{
   // replace this saving it in a database
   const newMovie = {...req.body, id: crypto.randomUUID()}
 
-  const parsedMovie = movieSchema.safeParse(newMovie)
+  const parsedMovie = validateMovie(newMovie)
   
   if (parsedMovie.success) {
     moviesData.push(newMovie)
@@ -49,7 +49,7 @@ app.post('/movies', (req, res)=>{
 
 app.patch('/movies/:id', (req, res)=>{
   const { id } = req.params
-  const result = movieSchema.safeParse(req.body)
+  const result = validateMoviePartially(req.body)
 
   const movieIndex = moviesData.findIndex(el => el.id === id)
   const movie = moviesData[movieIndex]
@@ -65,9 +65,10 @@ app.patch('/movies/:id', (req, res)=>{
 
   const updatedMovie = {...movie, ...result.data}
 
+  // this gonna be saved in the DB
   moviesData[movieIndex] = updatedMovie
 
-  res.json(result.data)
+  res.json(updatedMovie)
 })
 
 app.get(/^.*\.img$/, async (req, res)=>{
