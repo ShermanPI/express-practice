@@ -24,13 +24,13 @@
 ✅ - In the patch method if a movie of the id passed is not found return an 404 error to the client
 ✅ - make a function to validate the movies with the zod schema
 ✅ - make a function to validate the movies partially for the patch method
-- after validate the patch payload return 400 if a property is not valid, otherwise return the modified movie
-- try validating the id in the ID, if the schema does not have the id in the object, it cannot be modified because zod only will return the properties that are validating in the moment and that is what you want
+✅ - after validate the patch payload return 400 if a property is not valid, otherwise return the modified movie
+✅ - try validating the id in the ID, if the schema does not have the id in the object, it cannot be modified because zod only will return the properties that are validating in the moment and that is what you want
 
 ### CORS SOLVING
 
-- Create a web with index.html
-- Make a fetch to get all the movies in the web
+✅ - Create a web with index.html
+✅ ✅- Make a fetch to get all the movies in the web
 - resolve the CORS error in the browser fixing it in the API
 - make a list of accepted origins and only fix the cors error to those origins
 

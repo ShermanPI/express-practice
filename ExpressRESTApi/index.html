@@ -16,6 +16,12 @@
       width: 250px;
       list-style: none;
     }
+
+    #movies-ul{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -34,9 +40,9 @@
                     <button>Delete!</button>
                 </li>`
             )
-          });
+          })
 
-          $moviesUl.innerHTML = htmlMovieItems
+          $moviesUl.innerHTML = htmlMovieItems.join('')
         });
     });
   </script>
