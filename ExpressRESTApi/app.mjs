@@ -8,8 +8,20 @@ import validateMoviePartially from './utils/validate-movie-partially.mjs'
 const app = express()
 const PORT = 1234
 
+const ALLOWED_ORIGINS = ["http://127.0.0.1:5500", "http://127.0.0.1:62461"]
+
 app.disable('x-powered-by')
 app.use(express.json())
+
+app.use((req, res, next)=>{
+  const origin = req.headers.origin
+
+  if(ALLOWED_ORIGINS.includes(origin)){
+    res.header('Access-Control-Allow-Origin', origin)
+  }
+
+  next()
+})
 
 app.get('/', (req, res) => {
   res.send({ message: 'This is an API to learn ExpressJs :D' })
@@ -75,7 +87,6 @@ app.get(/^.*\.img$/, async (req, res)=>{
   const image = await fs.readFile('./test-image.jpg')
   res.type('jpg').send(image)
 })
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`)

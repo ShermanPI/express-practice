@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOVIES!</title>
+  </head>
+  <style>
+    img {
+      width: 100%;
+    }
+
+    .movie-poster {
+      border: 1px solid black;
+      border-radius: 4px;
+      width: 250px;
+      list-style: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("http://localhost:1234/movies")
+        .then((data) => data.json())
+        .then((movies) => {
+          console.log(movies)
+          const $moviesUl = document.getElementById("movies-ul")
+
+          const htmlMovieItems = movies.map((movie) => {
+            
+            return(
+                `<li class="movie-poster">
+                    <img src="${movie.poster}" alt="movie poster">
+                    <b>${movie.title}</b>
+                    <button>Delete!</button>
+                </li>`
+            )
+          });
+
+          $moviesUl.innerHTML = htmlMovieItems
+        });
+    });
+  </script>
+  <body>
+    <ul id="movies-ul"></ul>
+  </body>
+</html>
