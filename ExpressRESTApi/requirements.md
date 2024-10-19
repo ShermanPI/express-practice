@@ -30,9 +30,9 @@
 ### CORS SOLVING
 
 ✅ - Create a web with index.html
-✅ ✅- Make a fetch to get all the movies in the web
-- resolve the CORS error in the browser fixing it in the API
-- make a list of accepted origins and only fix the cors error to those origins
+✅ - Make a fetch to get all the movies in the web
+✅ - resolve the CORS error in the browser fixing it in the API
+✅ - make a list of accepted origins and only fix the cors error to those origins
 
 # NOTE: if the request comes from the same origin of the api, the request does not come with the 'origin' header, so try to validate the accepted origins without adding the same origin
 
