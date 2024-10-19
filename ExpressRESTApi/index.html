@@ -17,7 +17,7 @@
       list-style: none;
     }
 
-    #movies-ul{
+    #movies-ul {
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -28,22 +28,32 @@
       fetch("http://localhost:1234/movies")
         .then((data) => data.json())
         .then((movies) => {
-          console.log(movies)
-          const $moviesUl = document.getElementById("movies-ul")
+          const $moviesUl = document.getElementById("movies-ul");
 
           const htmlMovieItems = movies.map((movie) => {
-            
-            return(
-                `<li class="movie-poster">
+            return `<li class="movie-poster" id="m-${movie.id}">
                     <img src="${movie.poster}" alt="movie poster">
                     <b>${movie.title}</b>
-                    <button>Delete!</button>
-                </li>`
-            )
-          })
+                    <button id="${movie.id}">Delete!</button>
+                </li>`;
+          });
 
-          $moviesUl.innerHTML = htmlMovieItems.join('')
+          $moviesUl.innerHTML = htmlMovieItems.join("");
         });
+
+      document.addEventListener("click", (event) => {
+        if (event.target.matches("button")) {
+          fetch(`http://localhost:1234/movies/${event.target.id}`, {
+            method: "DELETE",
+          }).then((res) => {
+            if (res.ok) {
+              const elementToDelete = document.getElementById(`m-${event.target.id}`)
+
+              elementToDelete.remove()
+            }
+          });
+        }
+      });
     });
   </script>
   <body>

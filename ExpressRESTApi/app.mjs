@@ -13,11 +13,14 @@ const ALLOWED_ORIGINS = ["http://127.0.0.1:5500", "http://127.0.0.1:62461"]
 app.disable('x-powered-by')
 app.use(express.json())
 
+
 app.use((req, res, next)=>{
   const origin = req.headers.origin
 
-  if(ALLOWED_ORIGINS.includes(origin)){
+  // just used !origin because the same origin wont send the origin in the headers
+  if(ALLOWED_ORIGINS.includes(origin) || !origin){
     res.header('Access-Control-Allow-Origin', origin)
+    res.header('Access-Control-Allow-Methods', 'DELETE, OPTIONS, GET, POST')
   }
 
   next()
@@ -30,7 +33,7 @@ app.get('/', (req, res) => {
 app.get('/movies', (req, res) => {
   const { genre } = req.query
 
-  if (genre) {
+  if (genre) { 
     const data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
     res.json(data)
   }
@@ -81,6 +84,20 @@ app.patch('/movies/:id', (req, res)=>{
   moviesData[movieIndex] = updatedMovie
 
   res.json(updatedMovie)
+})
+
+app.delete('/movies/:id', (req, res)=>{
+  const { id } = req.params
+
+  const movieIndexToDelete = moviesData.findIndex(movie => movie.id === id)
+  
+  if(movieIndexToDelete < 0){
+    return res.status(404).json({message: 'Movie not found'})
+  }
+  moviesData.splice(movieIndexToDelete, 1)
+  
+  res.json({ message: 'Movie deleted'})
+  
 })
 
 app.get(/^.*\.img$/, async (req, res)=>{

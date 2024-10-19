@@ -34,15 +34,15 @@
 ✅ - resolve the CORS error in the browser fixing it in the API
 ✅ - make a list of accepted origins and only fix the cors error to those origins
 
-# NOTE: if the request comes from the same origin of the api, the request does not come with the 'origin' header, so try to validate the accepted origins without adding the same origin
+# NOTE: ✅ if the request comes from the same origin of the api, the request does not come with the 'origin' header, so try to validate the accepted origins without adding the same origin
 
-- make a DELETE method to delete a movie in the endpoints
-- make a delete button in the web page to delete an especific movie
-- resolve the CORS problem to the delete method
-
-# NOTE: For the methods DELETE / PATCH / PUT - the browser makes a PREFLIGHT request with the method OPTIONS an this method also needs the header 'Access-Control-Allow-Origin', so the others "complex methods" can be used, an remember that this mechanism also need the "Access-Control-Allow-Methods" with the methods allowed. EXAMPLE: 'GET, POST, DELETE' 
+# NOTE: For the methods DELETE / PATCH / PUT - the browser makes a PREFLIGHT request with the method OPTIONS an this method also needs the header 'Access-Control-Allow-Origin', so the others "complex methods" can be used, an remember that this mechanism also need the "Access-Control-Allow-Methods" with the methods allowed. EXAMPLE: 'DELETE, PATCH, PUT' 
 
 # A preflight request is an HTTP request that is sent before the actual request to check if it is safe to send. It is a mechanism used by the Cross-Origin Resource Sharing (CORS) standard to request permission from a website before sending an HTTP request that could have side effects
+
+✅ - make a DELETE method to delete a movie in the endpoints
+✅ - make a delete button in the web page to delete an especific movie
+- resolve the CORS problem to the delete method
 
 - use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). `
 - deploy the api in fl0
