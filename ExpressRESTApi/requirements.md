@@ -42,8 +42,8 @@
 
 ✅ - make a DELETE method to delete a movie in the endpoints
 ✅ - make a delete button in the web page to delete an especific movie
-- resolve the CORS problem to the delete method
+✅ - resolve the CORS problem to the delete method
 
-- use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). `
+- use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). [remember to install it]
 - deploy the api in fl0
 - create a require and import the mock JSON
