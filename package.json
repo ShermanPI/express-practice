@@ -1,13 +1,26 @@
 {
-  "name": "express-practice",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "4.21.0",
+    "zod": "^3.23.8"
+  },
+  "name": "expressrestapi",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd ExpressRESTApi && node app.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch app.mjs",
+    "prod": "node app.mjs"
+
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
 }
