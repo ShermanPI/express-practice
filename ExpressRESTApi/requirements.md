@@ -45,5 +45,5 @@
 ✅ - resolve the CORS problem to the delete method
 
 ✅ - use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). [remember to install it]
-- deploy the api in fl0
+- deploy the api in render
 - create a require and import the mock JSON
