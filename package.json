@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch app.mjs",
-    "prod": "node app.mjs"
+    "start": "node app.mjs"
 
   },
   "keywords": [],
