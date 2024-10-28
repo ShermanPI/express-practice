@@ -1,14 +1,16 @@
 import fs from 'node:fs/promises'
 import crypto from 'node:crypto'
 import express from 'express'
-import moviesData from './moviesMock.json' assert {type: 'json'}
 import validateMovie from './utils/validate-movie.mjs'
 import validateMoviePartially from './utils/validate-movie-partially.mjs'
 import cors from 'cors'
+import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
+const moviesData = require('./moviesMock.json')
 
 const app = express()
 const PORT = process.env.PORT || 1234
-
 
 // NO LIBRARIES CORS PROBLEM SOLVED 🚫📚
 // app.use((req, res, next)=>{
@@ -27,7 +29,7 @@ const PORT = process.env.PORT || 1234
 // CORS DOCUMENTATION: https://expressjs.com/en/resources/middleware/cors.html
 const corsOptions = {
   origin: function (origin, callback) {
-    const ALLOWED_ORIGINS = ["http://127.0.0.1:5500", "http://127.0.0.1:62461"]
+    const ALLOWED_ORIGINS = ['http://127.0.0.1:5500', 'http://127.0.0.1:62461']
 
     if (ALLOWED_ORIGINS.includes(origin) || !origin) {
       return callback(null, true)
@@ -55,16 +57,16 @@ app.get('/movies', (req, res) => {
     data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
   }
 
-  if(filter){
-     data = data.filter(movie => movie.title.includes(filter))
+  if (filter) {
+    data = data.filter(movie => movie.title.includes(filter))
   }
 
-  const currentPage = page || 1;
-  const itemsPerPage = limit || 10;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+  const currentPage = page || 1
+  const itemsPerPage = limit || 10
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
 
-  data = data.slice(startIndex, endIndex);
+  data = data.slice(startIndex, endIndex)
 
   res.send(data)
 })
@@ -97,7 +99,6 @@ app.patch('/movies/:id', (req, res) => {
 
   const movieIndex = moviesData.findIndex(el => el.id === id)
   const movie = moviesData[movieIndex]
-
 
   if (!movie) {
     return res.status(404).json({ message: 'Not found' })
