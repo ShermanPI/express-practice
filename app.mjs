@@ -47,13 +47,22 @@ app.get('/', (req, res) => {
 })
 
 app.get('/movies', (req, res) => {
-  const { genre } = req.query
+  const { genre, page, limit } = req.query
+
+  let data = moviesData
 
   if (genre) {
-    const data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
-    res.json(data)
+    data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
   }
-  res.send(moviesData)
+
+  const currentPage = page || 1;
+  const itemsPerPage = limit || 10;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  data = data.slice(startIndex, endIndex);
+
+  res.send(data)
 })
 
 app.get('/movies/:id', (req, res) => {
