@@ -47,4 +47,4 @@
 ✅ - use the middleware cors, but remember to configure it to not allow all the origin to access the content (*). [remember to install it]
 ✅ - deploy the api in render
 - create a require and import the mock JSON
-- make pagination: https://express-practice-hek3.onrender.com/movies?PageSize=10&PageIndex=1&filter=inception
+✅- make pagination: https://express-practice-hek3.onrender.com/movies?limit=10&page=1&filter=inception

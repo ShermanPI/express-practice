@@ -47,12 +47,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/movies', (req, res) => {
-  const { genre, page, limit } = req.query
+  const { genre, page, limit, filter } = req.query
 
   let data = moviesData
 
   if (genre) {
     data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
+  }
+
+  if(filter){
+     data = data.filter(movie => movie.title.includes(filter))
   }
 
   const currentPage = page || 1;
