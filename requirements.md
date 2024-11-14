@@ -51,7 +51,7 @@
 
 # MVC arquitecture pattern
 
-[]- explain what is MVC, and why is MVC used, mark some important points of using it
+[x]- explain what is MVC, and why is MVC used, mark some important points of using it
 
   - MVC is an arquitecture pattern that allows you to estructure your code in three big parts of a software application, those parts are MODEL, VIEW AND CONTROLLER. It can be said that:
     
@@ -64,13 +64,13 @@
       step A => VIEW (1. Request something) -> CONTROLLER (2. Search in the model using the request info) -> MODEL (3. Look in the data for the controller requested information )
       step B => VIEW < 💀💀⚡⚡⚡- CONTROLLER (5. Take the data from the model) <- MODEL (4. model send back the requeste data to the controller)
 
-[]- create a folder named routes and make a router for the movies
+[x]- create a folder named routes and make a router for the movies
 
 <!-- express.Router documentation: https://expressjs.com/es/4x/api.html#router -->
 <!-- express.Router documentation: https://expressjs.com/en/guide/routing.html#:~:text=express.Router&text=A%20Router%20instance%20is%20a,path%20in%20the%20main%20app. -->
 
 
-[]- create a folder for middlewares and add CORS middleware inside
+[x]- create a folder for middlewares and add CORS middleware inside
 []- create folder for controllers
 []- create folder for view
 []- create folder for models

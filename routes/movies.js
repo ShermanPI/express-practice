@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { readJSON } from './utils/readJSON.mjs'
+import { readJSON } from '../utils/readJSON.mjs'
 import validateMovie from '../utils/validate-movie.mjs'
 import validateMoviePartially from '../utils/validate-movie-partially.mjs'
 import fs from 'node:fs/promises'
