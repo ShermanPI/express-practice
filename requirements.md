@@ -48,3 +48,37 @@
 ✅ - deploy the api in render
 ✅ - create a require and import the mock JSON
 ✅ - make pagination: https://express-practice-hek3.onrender.com/movies?limit=10&page=1&filter=inception
+
+# MVC arquitecture pattern
+
+[]- explain what is MVC, and why is MVC used, mark some important points of using it
+
+  - MVC is an arquitecture pattern that allows you to estructure your code in three big parts of a software application, those parts are MODEL, VIEW AND CONTROLLER. It can be said that:
+    
+    => **MODEL**: Is the part that will manage all the data logic of the application, how it is stored if is needed and how is basically managed
+    
+    => **CONTROLLER:** The controller will look for manage how is the user request information used, it can be seen like an orchestrator, and if you will use a model o multiples models this part will call them with the user request data 
+
+    => **VIEW**: The view is basically everything that can be use to show the proccesed info to the user, not neccesarally have to be a front-end like made with react or vue, but a JSON can be enough to show the information to the user after the controller made all the orchetrations and returned the necesary information.
+
+      step A => VIEW (1. Request something) -> CONTROLLER (2. Search in the model using the request info) -> MODEL (3. Look in the data for the controller requested information )
+      step B => VIEW < 💀💀⚡⚡⚡- CONTROLLER (5. Take the data from the model) <- MODEL (4. model send back the requeste data to the controller)
+
+[]- create a folder named routes and make a router for the movies
+
+<!-- express.Router documentation: https://expressjs.com/es/4x/api.html#router -->
+<!-- express.Router documentation: https://expressjs.com/en/guide/routing.html#:~:text=express.Router&text=A%20Router%20instance%20is%20a,path%20in%20the%20main%20app. -->
+
+
+[]- create a folder for middlewares and add CORS middleware inside
+[]- create folder for controllers
+[]- create folder for view
+[]- create folder for models
+[]- create a class that holds the models with static methods and make it async, and explain why make it async is a good practice
+[]- make every model for all endpoints
+[]- Make evert controller for all endpoints
+[]- talk about what type of error manage each layer (What type of erorr manage the model, the controller and the vue)
+
+# note: all validations can be made in every layer of the MVC
+
+what an arquitecture is: https://chatgpt.com/share/6724495a-9eec-8003-a98b-22bb6567044a
