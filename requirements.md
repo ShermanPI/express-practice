@@ -71,9 +71,8 @@
 
 
 [x]- create a folder for middlewares and add CORS middleware inside
-[]- create folder for controllers
-[]- create folder for view
-[]- create folder for models
+[x]- create folder for controllers
+[x]- create folder for models
 []- create a class that holds the models with static methods and make it async, and explain why make it async is a good practice
 []- make every model for all endpoints
 []- Make evert controller for all endpoints

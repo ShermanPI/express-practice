@@ -3,33 +3,13 @@ import { readJSON } from '../utils/readJSON.mjs'
 import validateMovie from '../utils/validate-movie.mjs'
 import validateMoviePartially from '../utils/validate-movie-partially.mjs'
 import fs from 'node:fs/promises'
+import MovieController from '../controllers/movie.js'
 
 const moviesData = readJSON('../moviesMock.json')
 
 const moviesRouter = Router()
 
-moviesRouter.get('/', (req, res) => {
-  const { genre, page, limit, filter } = req.query
-
-  let data = moviesData
-
-  if (genre) {
-    data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
-  }
-
-  if (filter) {
-    data = data.filter(movie => movie.title.includes(filter))
-  }
-
-  const currentPage = page || 1
-  const itemsPerPage = limit || 10
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-
-  data = data.slice(startIndex, endIndex)
-
-  res.send(data)
-})
+moviesRouter.get('/', MovieController.getAll)
 
 moviesRouter.get('/:id', (req, res) => {
   const { id } = req.params
