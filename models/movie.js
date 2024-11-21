@@ -23,6 +23,37 @@ class MovieModel {
 
     return (data)
   }
+
+  static async getById ({ id }) {
+    const movie = moviesData.find(movie => movie.id === id)
+    if (movie) return movie
+
+    return { message: 'Movie not found' }
+  }
+
+  static async add ({ data }) {
+    moviesData.push(data)
+
+    return data
+  }
+
+  static async update ({ id, data }) {
+    const movieIndex = moviesData.findIndex(el => el.id === id)
+    moviesData[movieIndex] = data
+
+    return data
+  }
+
+  static async delete ({ id }) {
+    const movieIndexToDelete = moviesData.findIndex(movie => movie.id === id)
+
+    if (movieIndexToDelete < 0) {
+      return { message: 'Movie not found', success: false }
+    }
+
+    moviesData.splice(movieIndexToDelete, 1)
+    return { message: 'Movie deleted', success: true }
+  }
 }
 
 export default MovieModel

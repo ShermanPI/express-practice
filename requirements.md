@@ -73,10 +73,12 @@
 [x]- create a folder for middlewares and add CORS middleware inside
 [x]- create folder for controllers
 [x]- create folder for models
-[]- create a class that holds the models with static methods and make it async, and explain why make it async is a good practice
-[]- make every model for all endpoints
+[x]- create a class that holds the models with static methods and make it async, and explain why make it async is a good practice
+  => If you make the Models asyncronous, you don't have to adapt it in the future if the a next implementation needs to be asyncronous,
+    like a DB implementation if previously you had a local way to handle the data of the model.
+[x]- make every model for all endpoints
 []- Make evert controller for all endpoints
-[]- talk about what type of error manage each layer (What type of erorr manage the model, the controller and the vue)
+[]- talk about what type of error manage each layer (What type of erorr manage the model, the controller and the view)
 
 # note: all validations can be made in every layer of the MVC
 
