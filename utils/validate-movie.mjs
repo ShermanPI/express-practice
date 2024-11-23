@@ -1,7 +1,7 @@
 import movieSchema from '../schemas/movies.mjs'
 
 const validateMovie = (movie) => {
-  movieSchema.safeParse(movie)
+  return movieSchema.safeParse(movie)
 }
 
 export default validateMovie

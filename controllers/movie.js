@@ -23,7 +23,6 @@ class MovieController {
     const newMovie = { ...req.body, id: crypto.randomUUID() }
 
     const parsedMovie = validateMovie(newMovie)
-
     if (parsedMovie.success) {
       const data = await MovieModel.add({ data: newMovie })
       return res.json(data)

@@ -77,8 +77,14 @@
   => If you make the Models asyncronous, you don't have to adapt it in the future if the a next implementation needs to be asyncronous,
     like a DB implementation if previously you had a local way to handle the data of the model.
 [x]- make every model for all endpoints
-[]- Make evert controller for all endpoints
-[]- talk about what type of error manage each layer (What type of erorr manage the model, the controller and the view)
+[x]- Make evert controller for all endpoints
+[x]- talk about what type of error manage each layer (What type of erorr manage the model, the controller and the view)
+
+  => In the layer of **view** is more aligned to the UX, here the the user can see the errors in the visual part of the application, you can have warnings too, with the purpose to warn the user that the request they will try to do using that info will have errors
+
+  => In the layer of the **controller** you will have validations for a request is sended to it, review the data sended by the user and confirm that data is correct and complete
+
+  => In the **model** layer, validation typically focuses on ensuring that the data is consistent with the database schema and the integrity constraints of the application.
 
 # note: all validations can be made in every layer of the MVC
 

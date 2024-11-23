@@ -6,6 +6,8 @@ class MovieModel {
   static async getAll ({ genre, page, limit, filter }) {
     let data = moviesData
 
+    console.log(moviesData, '🔥🔥🔥')
+
     if (genre) {
       data = moviesData.filter(movie => movie.genre.map(genre => genre.toLocaleLowerCase()).includes(genre.toLocaleLowerCase()))
     }

@@ -2,23 +2,22 @@
 GET http://localhost:1234/movies
 
 ### get a movie by ID ✅
-GET http://localhost:1234/movies/1
+GET http://localhost:1234/movies/1bfbcce1-5713-4649-a422-a3e8a23571e2
 
 ### get all movies by a genre (its a filter so im using query params) ✅
 GET http://localhost:1234/movies?genre=Action
 
-### create a movie
-POST http://localhost:1234/movies ✅
+### create a movie✅
+POST http://localhost:1234/movies
 Content-Type: application/json
 
 {
-  "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c3",
   "title": "The Shawshank Redemption",
   "year": 1994,
   "director": "Frank Darabont",
   "duration": 142,
   "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
-  "genre": ["Drama"],
+  "genre": "Drama",
   "rate": 9.3
 }
 
