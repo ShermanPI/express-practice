@@ -18,6 +18,7 @@ const corsOptions = {
   origin: function (origin, callback) {
     const ALLOWED_ORIGINS = ['http://127.0.0.1:5500', 'http://127.0.0.1:62461']
 
+    // if origin comes null it means the requiest comes from the same site
     if (ALLOWED_ORIGINS.includes(origin) || !origin) {
       return callback(null, true)
     }
