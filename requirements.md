@@ -90,43 +90,47 @@
 
 what an arquitecture is: https://chatgpt.com/share/6724495a-9eec-8003-a98b-22bb6567044a
 
-- IN MDL in postgressSQL, do:
-  - Create a database named moviesDB
-  - use the database
-  - create the table movies
-    - id(uuid by default) - BINARY(16)
-    - title varchar, not null
-    - year int, not null
-    - director varchar, not null
-    - duration, int, not null
-    - poster TEXT,
-    - rate DECIMAL(2, 1), not null
+- Using MDL in mySQL, do:
+  [] - Create a database named moviesDB
+  [] - use the database
+  []- create the table movies
+      - id(uuid by default) - BINARY(16)
+      - title varchar, not null
+      - year int, not null
+      - director varchar, not null
+      - duration, int, not null
+      - poster TEXT,
+      - rate DECIMAL(2, 1), not null
   
-  - create table for genre
-    - id int auto increment primary key
-    - name varchar 255, not null unique
+  [] - create table for genre
+      - id int auto increment primary key
+      - name varchar 255, not null unique
   
-  - create relations for movies_genre
-    - movie_id BINARY(16) references to movie id
-    - genre_id int references to genre id
-    - primary key (movie_id, genre_id)
+  []- create relations for movies_genre
+      - movie_id BINARY(16) references to movie id
+      - genre_id int references to genre id
+      - primary key (movie_id, genre_id)
 
-  - insert genres
-  - insert some movies
+  [] - insert genres
+  [] - insert some movies
 
-- install mysql2 to use the sql data base in nodejs
-- crea la conexion con el mysql2
-- modifica el model del sql para que devuelva las movies
-- use the mysql2/promise library
-- MMake the requests in a way the user can inject sql with the mysql2 library
-- when inserting a new movie use a new UUID created by sql and use it to insert a new movie
+[] - install mysql2 to use the sql data base in nodejs
+[] - create a conection with mysql2
+  Note: use the mysql2/promise library
+[] - modify the MOvie Model of sql so it returns the movies
+[] - Make the requests in a way the user **CAN NOT** inject sql with the mysql2 library
+[] - when inserting a new movie use a new UUID created by sql and use it to insert a new movie
+
+[] WHAT YOU MEAN WHEN YOU SAY INYECTION
 
 <!-- REFACTORING -->
-- Convert the static methods into non static methods in the movieController class. and explain why
-- Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
-- 
 
-
+[] - Convert the static methods into non static methods in the movieController class. and explain why
+[] - Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
+[] - Make the code of app.mjs a function (createApp({ movieModel })) that receives the model you want to use and export that function. and explain why
+[] - create multiples "execution environments" creating two files one named "server-with-local" and "server-with-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
+[] - study dotenv library
+[] - deploy your database on planetscale.com or another database host service
 
 # NOTE: using autoincrement as an ID make it predecible, so if the id is not important you can use the increment one, because it does not matter if the user know the next id, but if the id neccesarally need to be secret use another way to create IDs
 # NOTE: Dont send the backend errors to the user, e.g. After an error in the database avoid sending the exact error of the database to the user.
