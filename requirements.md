@@ -91,7 +91,7 @@
 what an arquitecture is: https://chatgpt.com/share/6724495a-9eec-8003-a98b-22bb6567044a
 
 - Using MDL in mySQL, do:
-  [] - Create a database named moviesDB
+  [x] - Create a database named moviesDB
   [] - use the database
   []- create the table movies
       - id(uuid by default) - BINARY(16)
@@ -102,7 +102,7 @@ what an arquitecture is: https://chatgpt.com/share/6724495a-9eec-8003-a98b-22bb6
       - poster TEXT,
       - rate DECIMAL(2, 1), not null
   
-  [] - create table for genre
+  [x] - create table for genre
       - id int auto increment primary key
       - name varchar 255, not null unique
   
