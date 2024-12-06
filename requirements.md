@@ -90,26 +90,28 @@
 
 what an arquitecture is: https://chatgpt.com/share/6724495a-9eec-8003-a98b-22bb6567044a
 
+https://www.geeksforgeeks.org/uuid-function-in-mysql/
+
 - Using MDL in mySQL, do:
   [x] - Create a database named moviesDB
-  [] - use the database
-  []- create the table movies
-      - id(uuid by default) - BINARY(16)
-      - title varchar, not null
-      - year int, not null
-      - director varchar, not null
-      - duration, int, not null
-      - poster TEXT,
-      - rate DECIMAL(2, 1), not null
+  [x] - use the database
+  [x] - create the table movies
+      [x]- id(uuid by default) - BINARY(16)
+      [x] - title varchar, not null
+      [x] - year int, not null
+      [x] - director varchar, not null
+      [x] - duration, int, not null
+      [x] - poster TEXT,
+      [x] - rate DECIMAL(2, 1), not null
   
   [x] - create table for genre
-      - id int auto increment primary key
-      - name varchar 255, not null unique
+      [x] - id int auto increment primary key
+      [x] - name varchar 255, not null unique
   
-  []- create relations for movies_genre
-      - movie_id BINARY(16) references to movie id
-      - genre_id int references to genre id
-      - primary key (movie_id, genre_id)
+  [x] - create relations for movies_genre
+      [x] - movie_id BINARY(16) references to movie id
+      [x] - genre_id int references to genre id
+      [x] - primary key (movie_id, genre_id)
 
   [] - insert genres
   [] - insert some movies
