@@ -113,8 +113,8 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
       [x] - genre_id int references to genre id
       [x] - primary key (movie_id, genre_id)
 
-  [] - insert genres
-  [] - insert some movies
+  [x] - insert genres
+  [x] - insert some movies
 
 [] - install mysql2 to use the sql data base in nodejs
 [] - create a conection with mysql2
