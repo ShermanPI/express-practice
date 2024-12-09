@@ -2,6 +2,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "4.21.0",
+    "mysql2": "^3.11.5",
     "zod": "^3.23.8"
   },
   "name": "expressrestapi",
@@ -10,7 +11,6 @@
   "scripts": {
     "dev": "node --watch app.mjs",
     "start": "node app.mjs"
-
   },
   "keywords": [],
   "author": "",

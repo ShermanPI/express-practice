@@ -3,27 +3,27 @@ CREATE DATABASE moviesDB;
 
 USE moviesDB;
 
-CREATE TABLE movies (
-	movie_id BINARY(16) NOT NULL,
+CREATE TABLE movie (
+	id BINARY(16) NOT NULL,
 	title VARCHAR(25) NOT NULL,
     year INT NOT NULL,
     director VARCHAR(32) NOT NULL,
     duration INT NOT NULL,
     poster TEXT,
     rate DECIMAL(2, 1) NOT NULL,
-    PRIMARY KEY (movie_id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE genre (
-	genre_id INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL UNIQUE,
-    PRIMARY KEY (genre_id)
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE movies_genre(
-	PRIMARY KEY(movie_id, genre_id),
-    movie_id BINARY(16) REFERENCES movies(movie_id),
-    genre_id int REFERENCES genre(genre_id)
+CREATE TABLE movie_genre(
+	movie_id BINARY(16) REFERENCES movie(id),
+    genre_id BINARY(16) REFERENCES genre(id),
+    PRIMARY KEY (movie_id, genre_id)
 );
 
 -- Populate the genre table with genres
@@ -38,7 +38,7 @@ INSERT INTO genre (name) VALUES
 ('Documentary');
 
 -- Populate the movies table with sample movies
-INSERT INTO movies (movie_id, title, year, director, duration, poster, rate) VALUES
+INSERT INTO movie (id, title, year, director, duration, poster, rate) VALUES
 (UUID_TO_BIN(UUID()), 'Inception', 2010, 'Christopher Nolan', 148, NULL, 8.8),
 (UUID_TO_BIN(UUID()), 'The Dark Knight', 2008, 'Christopher Nolan', 152, NULL, 9.0),
 (UUID_TO_BIN(UUID()), 'Interstellar', 2014, 'Christopher Nolan', 169, NULL, 8.6),
@@ -48,7 +48,7 @@ INSERT INTO movies (movie_id, title, year, director, duration, poster, rate) VAL
 (UUID_TO_BIN(UUID()), 'Get Out', 2017, 'Jordan Peele', 104, NULL, 7.7);
 
 -- Populate the movies_genre table to associate movies with genres
-INSERT INTO movies_genre (movie_id, genre_id) VALUES
+INSERT INTO movie_genre (movie_id, genre_id) VALUES
 -- Inception: Action, Sci-Fi
 (UUID_TO_BIN(UUID()), 1),
 (UUID_TO_BIN(UUID()), 6),

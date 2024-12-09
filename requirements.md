@@ -116,10 +116,12 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
   [x] - insert genres
   [x] - insert some movies
 
-[] - install mysql2 to use the sql data base in nodejs
-[] - create a conection with mysql2
-  Note: use the mysql2/promise library
-[] - modify the MOvie Model of sql so it returns the movies
+[x] - install mysql2 to use the sql data base in nodejs
+[x] - create a conection with mysql2
+
+# Note: use the mysql2/promise library
+
+[] - add a new Movie Model of sql so it returns the movies
 [] - Make the requests in a way the user **CAN NOT** inject sql with the mysql2 library
 [] - when inserting a new movie use a new UUID created by sql and use it to insert a new movie
 
