@@ -119,6 +119,9 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
 [x] - install mysql2 to use the sql data base in nodejs
 [x] - create a conection with mysql2
 
+
+<!-- NOTE 📚📚📚you cannot directly compare two BLOBs (Binary Large Objects) as IDs in SQL -->
+
 # Note: use the mysql2/promise library
 
 [] - add a new Movie Model of sql so it returns the movies
@@ -132,7 +135,7 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
 [] - Convert the static methods into non static methods in the movieController class. and explain why
 [] - Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
 [] - Make the code of app.mjs a function (createApp({ movieModel })) that receives the model you want to use and export that function. and explain why
-[] - create multiples "execution environments" creating two files one named "server-with-local" and "server-with-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
+[] - create multiples "execution environments" creating two files one named "movie-local" and "movie-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
 [] - study dotenv library
 [] - deploy your database on planetscale.com or another database host service
 

@@ -1,4 +1,5 @@
-import MovieModel from '../models/movie.js'
+// import MovieModel from '../models/movie.js'
+import MovieModel from '../models/movies-mysql.js'
 import validateMoviePartially from '../utils/validate-movie-partially.mjs'
 import validateMovie from '../utils/validate-movie.mjs'
 
@@ -7,7 +8,6 @@ class MovieController {
     const { genre, page, limit, filter } = req.query
 
     const data = await MovieModel.getAll({ genre, page, limit, filter })
-
     res.json(data)
   }
 
