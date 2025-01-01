@@ -8,6 +8,8 @@ const connection = await mysql.createConnection({
 
 class MovieModel {
   static async getAll ({ genre, page, limit, filter }) {
+    // const { genre, page, limit, filter }
+
     let query = 'SELECT BIN_TO_UUID(id) id, title, year, director, duration, poster, rate FROM movie'
     const [data] = await connection.query(query)
 
@@ -18,16 +20,18 @@ class MovieModel {
         return []
       }
 
+      const [{ id }] = genres
       query =
-        `SELECT BIN_TO_UUID(m.id) as id, m.title, m.year, g.id as genre_id, g.name 
+        `SELECT DISTINCT BIN_TO_UUID(m.id) as id, m.title, m.year, g.id as genre_id, g.name 
         FROM movie as m
         INNER JOIN movie_genre ON BIN_TO_UUID(movie_genre.movie_id) = BIN_TO_UUID(m.id)
         INNER JOIN genre as g ON movie_genre.genre_id = g.id
-        WHERE g.name LIKE ?`
+        WHERE g.id = ?
+        WHERE m.title LIKE ?
+        LIMIT ?
+        OFFSET ?`
 
-      const [data] = await connection.query(query, genre)
-      console.log(data, '🎉🎉')
-      console.log(genre, '⚡⚡')
+      const [data] = await connection.query(query, id, filter, limit, page * limit)
       return data
     }
 

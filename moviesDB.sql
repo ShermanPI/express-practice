@@ -50,7 +50,10 @@ INSERT INTO movie (id, title, year, director, duration, poster, rate) VALUES
 (UUID_TO_BIN(UUID()), 'The Grand Budapest Hotel', 2014, 'Wes Anderson', 99, NULL, 8.1),
 (UUID_TO_BIN(UUID()), 'Parasite', 2019, 'Bong Joon Ho', 132, NULL, 8.6),
 (UUID_TO_BIN(UUID()), 'The Matrix', 1999, 'Lana Wachowski, Lilly Wachowski', 136, NULL, 8.7),
-(UUID_TO_BIN(UUID()), 'Get Out', 2017, 'Jordan Peele', 104, NULL, 7.7);
+(UUID_TO_BIN(UUID()), 'Get Out', 2017, 'Jordan Peele', 104, NULL, 7.7),
+(UUID_TO_BIN(UUID()), 'Whiplash', 2014, 'Damien Chazelle', 107, NULL, 8.5),
+(UUID_TO_BIN(UUID()), 'Pulp Fiction', 1994, 'Quentin Tarantino', 154, NULL, 8.9),
+(UUID_TO_BIN(UUID()), 'Fight Club', 1999, 'David Fincher', 139, NULL, 8.8);
 
 -- Poblar dinámicamente la tabla movie_genre con relaciones basadas en UUID
 -- Inception: Action (1), Sci-Fi (6)
@@ -95,14 +98,30 @@ SELECT id, 5 FROM movie WHERE title = 'Get Out';
 INSERT INTO movie_genre (movie_id, genre_id)
 SELECT id, 4 FROM movie WHERE title = 'Get Out';
 
+-- Whiplash: Drama (3)
+INSERT INTO movie_genre (movie_id, genre_id)
+SELECT id, 3 FROM movie WHERE title = 'Whiplash';
+
+-- Pulp Fiction: Drama (3), Thriller (4)
+INSERT INTO movie_genre (movie_id, genre_id)
+SELECT id, 3 FROM movie WHERE title = 'Pulp Fiction';
+INSERT INTO movie_genre (movie_id, genre_id)
+SELECT id, 4 FROM movie WHERE title = 'Pulp Fiction';
+
+-- Fight Club: Drama (3), Thriller (4)
+INSERT INTO movie_genre (movie_id, genre_id)
+SELECT id, 3 FROM movie WHERE title = 'Fight Club';
+INSERT INTO movie_genre (movie_id, genre_id)
+SELECT id, 4 FROM movie WHERE title = 'Fight Club';
+
 -- Consultas de prueba
 SELECT * FROM movie;
 SELECT * FROM genre;
-SELECT BIN_TO_UUID(movie_id) as movie_id, BIN_TO_UUID(genre_id) as genre_id
+SELECT BIN_TO_UUID(movie_id) as movie_id, genre_id
 FROM movie_genre;
 
-SELECT BIN_TO_UUID(m.id) as id, m.title, m.year, g.id as genre_id, g.name as genre_name
-        FROM movie as m
-        INNER JOIN movie_genre ON BIN_TO_UUID(movie_genre.movie_id) = BIN_TO_UUID(m.id)
-        INNER JOIN genre as g ON movie_genre.genre_id = g.id
-        WHERE g.name LIKE 'Romance'
+SELECT DISTINCT BIN_TO_UUID(m.id) as id, m.title, m.year, g.id as genre_id, g.name as genre_name
+FROM movie as m
+INNER JOIN movie_genre ON BIN_TO_UUID(movie_genre.movie_id) = BIN_TO_UUID(m.id)
+INNER JOIN genre as g ON movie_genre.genre_id = g.id
+WHERE g.name LIKE 'drama';
