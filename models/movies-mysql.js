@@ -7,35 +7,48 @@ const connection = await mysql.createConnection({
 })
 
 class MovieModel {
-  static async getAll ({ genre, page, limit, filter }) {
-    // const { genre, page, limit, filter }
+  static async getAll ({ genre = '', page = 1, limit = 10, filter = '' }) {
+    let query = 'SELECT BIN_TO_UUID(m.id) AS id, title, year, director, duration, poster, rate FROM movie AS m'
+    const params = []
 
-    let query = 'SELECT BIN_TO_UUID(id) id, title, year, director, duration, poster, rate FROM movie'
-    const [data] = await connection.query(query)
-
+    // Condicional para agregar INNER JOIN si se pasa un género
     if (genre) {
-      const [genres] = await connection.query('SELECT * FROM genre WHERE name LIKE ?', genre)
+    // Consulta para encontrar el género
+      const [genres] = await connection.query('SELECT * FROM genre WHERE name LIKE ?', [`%${genre}%`])
 
-      if (!genres) {
-        return []
+      if (!genres || genres.length === 0) {
+        return [] // Si no se encuentra el género, se retorna un arreglo vacío
       }
 
-      const [{ id }] = genres
-      query =
-        `SELECT DISTINCT BIN_TO_UUID(m.id) as id, m.title, m.year, g.id as genre_id, g.name 
-        FROM movie as m
+      // Se agrega el INNER JOIN relacionado con el género
+      query += `
         INNER JOIN movie_genre ON BIN_TO_UUID(movie_genre.movie_id) = BIN_TO_UUID(m.id)
-        INNER JOIN genre as g ON movie_genre.genre_id = g.id
-        WHERE g.id = ?
-        WHERE m.title LIKE ?
-        LIMIT ?
-        OFFSET ?`
+        INNER JOIN genre AS g ON movie_genre.genre_id = g.id
+        WHERE g.id = ?`
 
-      const [data] = await connection.query(query, id, filter, limit, page * limit)
-      return data
+      const [{ id }] = genres
+      console.log('📝📝📝', id)
+      params.push(id)
     }
 
-    return data
+    if (filter) {
+      query += ' AND m.title LIKE ?'
+      params.push(`%${filter}%`)
+    }
+
+    query += ' LIMIT ? OFFSET ?'
+    params.push(limit, (page - 1) * limit)
+
+    console.log('Consulta SQL:', query)
+    console.log('Parámetros:', params)
+
+    try {
+      const [data] = await connection.query(query, params)
+      return data
+    } catch (error) {
+      console.error('Error en la consulta:', error)
+      return []
+    }
   }
 
   static async getById ({ id }) {
