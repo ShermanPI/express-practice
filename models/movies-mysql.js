@@ -52,9 +52,6 @@ class MovieModel {
     const query = `SELECT BIN_TO_UUID(m.id) AS id, title, year, director, duration, poster, rate FROM movie AS m
         WHERE BIN_TO_UUID(m.id) = ?`
 
-    console.log('Consulta SQL:', query)
-    console.log('Parámetros:', id)
-
     try {
       const [data] = await connection.query(query, [id])
       return data
@@ -64,10 +61,17 @@ class MovieModel {
     }
   }
 
-  static async add ({ data }) {
-    // moviesData.push(data)
+  static async add ({ data: movieData }) {
+    const query = `INSERT INTO movie (id, title, year, director, duration, poster, rate)
+                 VALUES (UUID_TO_BIN(UUID()), ?, ?, ?, ?, ?, ?)`
 
-    // return data
+    try {
+      const [data] = await connection.query(query, [movieData.title, movieData.year, movieData.director, movieData.duration, movieData.poster, movieData.rate])
+      return data
+    } catch (error) {
+      console.error('Error in the request:', error)
+      return []
+    }
   }
 
   static async update ({ id, data }) {
