@@ -39,24 +39,29 @@ class MovieModel {
     query += ' LIMIT ? OFFSET ?'
     params.push(limit, (page - 1) * limit)
 
-    console.log('Consulta SQL:', query)
-    console.log('Parámetros:', params)
-
     try {
       const [data] = await connection.query(query, params)
       return data
     } catch (error) {
-      console.error('Error en la consulta:', error)
+      console.error('Error in the request:', error)
       return []
     }
   }
 
   static async getById ({ id }) {
-    // const [data] = []
-    // const movie = data.find(movie => movie.id === id)
-    // if (movie) return movie
+    const query = `SELECT BIN_TO_UUID(m.id) AS id, title, year, director, duration, poster, rate FROM movie AS m
+        WHERE BIN_TO_UUID(m.id) = ?`
 
-    // return { message: 'Movie not found' }
+    console.log('Consulta SQL:', query)
+    console.log('Parámetros:', id)
+
+    try {
+      const [data] = await connection.query(query, [id])
+      return data
+    } catch (error) {
+      console.error('Error in the request:', error)
+      return []
+    }
   }
 
   static async add ({ data }) {
