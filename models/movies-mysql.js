@@ -74,22 +74,35 @@ class MovieModel {
     }
   }
 
-  static async update ({ id, data }) {
-    // const movieIndex = moviesData.findIndex(el => el.id === id)
-    // moviesData[movieIndex] = data
+  static async update ({ id, data: movieData }) {
+    const query = `UPDATE movie
+    SET title = ?, year = ?, director = ?, duration = ?, poster = ?, rate = ?
+    WHERE id = UUID_TO_BIN(?)`
 
-    // return data
+    try {
+      const [data] = await connection.query(query, [movieData.title, movieData.year, movieData.director, movieData.duration, movieData.poster, movieData.rate, id])
+      return data
+    } catch (error) {
+      console.error('Error in the request:', error)
+      return []
+    }
   }
 
   static async delete ({ id }) {
-    // const movieIndexToDelete = moviesData.findIndex(movie => movie.id === id)
+    const deleteGenresQuery = 'DELETE FROM movie_genre WHERE movie_id = UUID_TO_BIN(?)'
+    const deleteMovieQuery = 'DELETE FROM movie WHERE id = UUID_TO_BIN(?)'
 
-    // if (movieIndexToDelete < 0) {
-    //   return { message: 'Movie not found', success: false }
-    // }
+    try {
+      // First, delete related movie_genre entries
+      await connection.query(deleteGenresQuery, [id])
 
-    // moviesData.splice(movieIndexToDelete, 1)
-    // return { message: 'Movie deleted', success: true }
+      // Then, delete the movie
+      const [data] = await connection.query(deleteMovieQuery, [id])
+      return data
+    } catch (error) {
+      console.error('Error in the request:', error)
+      return []
+    }
   }
 }
 
