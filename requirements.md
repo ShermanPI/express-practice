@@ -124,16 +124,17 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
 
 # Note: use the mysql2/promise library
 
-[] - add a new Movie Model of sql so it returns the movies
-[] - Make the requests in a way the user **CAN NOT** inject sql with the mysql2 library
-[] - when inserting a new movie use a new UUID created by sql and use it to insert a new movie
+[x] - add a new Movie Model of sql so it returns the movies
+[x] - Make the requests in a way the user **CAN NOT** inject sql with the mysql2 library
+[x] - when inserting a new movie use a new UUID created by sql and use it to insert a new movie
 
-[] WHAT YOU MEAN WHEN YOU SAY INYECTION
+[x] WHAT YOU MEAN WHEN YOU SAY INYECTION - https://chatgpt.com/c/678f14f9-596c-8003-abc1-1d95b6906ae5
 
 <!-- REFACTORING -->
 
-[] - Convert the static methods into non static methods in the movieController class. and explain why
-[] - Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
+[x] - Convert the static methods into non static methods in the movieController class. and explain why
+  - THE WHY - now, if the controller static methods are now part of the instance you can use it every time you want and using the model you want in every instance
+[x] - Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
 [] - Make the code of app.mjs a function (createApp({ movieModel })) that receives the model you want to use and export that function. and explain why
 [] - create multiples "execution environments" creating two files one named "movie-local" and "movie-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
 [] - study dotenv library

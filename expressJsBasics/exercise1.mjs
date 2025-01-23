@@ -36,12 +36,10 @@ app.use(express.json())
 app.use((req, res, next) => {
   const { method, url } = req
 
-  console.log(`[${method}] - ${url}`)
   next()
 })
 
 app.use('/pokemon', (req, res, next) => {
-  console.log('pokemon 👻')
   next()
 })
 

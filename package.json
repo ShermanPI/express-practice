@@ -10,6 +10,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch app.mjs",
+    "dev:local": "node --watch ./environments/server-with-local.mjs",
+    "dev:sql": "node --watch ./environments/server-with-sql.mjs",
     "start": "node app.mjs"
   },
   "keywords": [],

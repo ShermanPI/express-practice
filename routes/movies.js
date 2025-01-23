@@ -2,21 +2,25 @@ import { Router } from 'express'
 import fs from 'node:fs/promises'
 import MovieController from '../controllers/movie.js'
 
-const moviesRouter = Router()
+export const createMoviesRouter = ({ movieModel }) => {
+  const moviesRouter = Router()
 
-moviesRouter.get('/', MovieController.getAll)
+  const movieController = new MovieController({ movieModel })
 
-moviesRouter.get('/:id', MovieController.getById)
+  moviesRouter.get('/', movieController.getAll)
 
-moviesRouter.post('/', MovieController.add)
+  moviesRouter.get('/:id', movieController.getById)
 
-moviesRouter.patch('/:id', MovieController.update)
+  moviesRouter.post('/', movieController.add)
 
-moviesRouter.delete('/:id', MovieController.delete)
+  moviesRouter.patch('/:id', movieController.update)
 
-moviesRouter.get(/^.*\.img$/, async (req, res) => {
-  const image = await fs.readFile('./test-image.jpg')
-  res.type('jpg').send(image)
-})
+  moviesRouter.delete('/:id', movieController.delete)
 
-export default moviesRouter
+  moviesRouter.get(/^.*\.img$/, async (req, res) => {
+    const image = await fs.readFile('./test-image.jpg')
+    res.type('jpg').send(image)
+  })
+
+  return moviesRouter
+}
