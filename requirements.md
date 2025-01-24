@@ -135,9 +135,9 @@ https://www.geeksforgeeks.org/uuid-function-in-mysql/
 [x] - Convert the static methods into non static methods in the movieController class. and explain why
   - THE WHY - now, if the controller static methods are now part of the instance you can use it every time you want and using the model you want in every instance
 [x] - Make a constructor in the movieController class soy you can set the property movieModel and make the class take the movieModel property of the instance. And explain why
-[] - Make the code of app.mjs a function (createApp({ movieModel })) that receives the model you want to use and export that function. and explain why
-[] - create multiples "execution environments" creating two files one named "movie-local" and "movie-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
+[x] - Make the code of app.mjs a function (createApp({ movieModel })) that receives the model you want to use and export that function. and explain why
 [] - study dotenv library
+[] - create multiples "execution environments" creating two files one named "movie-local" and "movie-mysql" and be able to use them with node scripts. e.g. 'npm run start:local'
 [] - deploy your database on planetscale.com or another database host service
 
 # NOTE: using autoincrement as an ID make it predecible, so if the id is not important you can use the increment one, because it does not matter if the user know the next id, but if the id neccesarally need to be secret use another way to create IDs
